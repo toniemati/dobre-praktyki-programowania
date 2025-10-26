@@ -1,0 +1,1 @@
+# dobre-praktyki-programowania
