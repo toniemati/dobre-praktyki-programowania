@@ -1,10 +1,20 @@
+from sqlalchemy.orm import declarative_base, sessionmaker
 from fastapi import FastAPI
 from pandas import read_csv
+from sqlalchemy import create_engine
 
 from models.link import Link
 from models.movie import Movie
 from models.rating import Rating
 from models.tag import Tag
+from models.base import Base
+
+engine = create_engine("sqlite:///example.db", echo=True)
+
+Base.metadata.create_all(engine)
+
+Session = sessionmaker(bind=engine)
+session = Session()
 
 app = FastAPI()
 
@@ -16,59 +26,47 @@ def read_root():
 
 @app.get('/movies')
 def read_movies():
-    file = read_csv('./database/movies.csv')
+    movies = session.query(Movie).all()
 
-    movies = []
-
-    for row in file.itertuples(index=False):
-        m = Movie(row.movieId, row.title, row.genres)
-
-        movies.append(m.__dict__())
-
-    return movies[0:10]
+    # return len(movies)
     return movies
 
 
 @app.get('/links')
 def read_links():
-    file = read_csv('./database/links.csv')
+    links = session.query(Link).all()
 
-    links = []
-
-    for row in file.itertuples(index=False):
-        l = Link(row.movieId, row.imdbId, row.tmdbId)
-
-        links.append(l.__dict__())
-
-    return links[0:10]
+    # return len(links)
     return links
 
 
 @app.get('/ratings')
 def read_ratings():
-    file = read_csv('./database/ratings.csv')
+    ratings = session.query(Rating).all()
 
-    ratings = []
-
-    for row in file.itertuples(index=False):
-        r = Rating(row.userId, row.movieId, row.rating, row.timestamp)
-
-        ratings.append(r.__dict__())
-
-    return ratings[0:10]
+    # return len(ratings)
     return ratings
 
 
 @app.get('/tags')
 def read_tags():
-    file = read_csv('./database/tags.csv')
+    tags = session.query(Tag).all()
 
-    tags = []
-
-    for row in file.itertuples(index=False):
-        t = Tag(row.userId, row.movieId, row.tag, row.timestamp)
-
-        tags.append(t.__dict__())
-
-    return tags[0:10]
+    # return len(tags)
     return tags
+
+
+
+
+
+# ! adding into db
+# data = []
+
+# for row in file.itertuples(index=False):
+#     d = Tag(row.userId, row.movieId, row.tag, row.timestamp)
+#     data.append(d)
+
+# session.add_all(data)
+# session.commit()
+
+# return {"msg": "added", "len": len(data)}
