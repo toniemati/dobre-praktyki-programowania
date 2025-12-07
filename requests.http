@@ -1,16 +1,3 @@
-POST http://localhost:8000/users
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJfaWQiOjEsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc2NTExNzA5MX0.tcpqxCkRCHZjRUc2HxK0oQNuKYgsfm_wW3L4ACIkNww
-
-{
-  "username": "admin1",
-  "email": "admin1@email.com",
-  "password": "admin1123",
-  "roles": ["ROLE_USER", "ROLE_ADMIN"]
-}
-
-###
-
 #! LOGIN
 POST http://127.0.0.1:8000/login
 Content-Type: application/json
@@ -22,6 +9,18 @@ Content-Type: application/json
 
 ###
 
+#! USER DETAILS
+GET http://127.0.0.1:8000/user_details
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJfaWQiOjEsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc2NTExNzMyOX0.sIzkHIsfpbTjAlXu0Qae-BXBNtx-D01p1qR-e7DIEJk
+
+###
+
 #! USERS
 GET http://127.0.0.1:8000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJfaWQiOjEsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc2NTExNzA5MX0.tcpqxCkRCHZjRUc2HxK0oQNuKYgsfm_wW3L4ACIkNww
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJfaWQiOjEsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc2NTExNzMyOX0.sIzkHIsfpbTjAlXu0Qae-BXBNtx-D01p1qR-e7DIEJk
+
+###
+
+#! MOVIES
+GET http://127.0.0.1:8000/movies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhZG1pbiIsInVzZXJfaWQiOjEsImVtYWlsIjoiYWRtaW5AZW1haWwuY29tIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImV4cCI6MTc2NTExNzMyOX0.sIzkHIsfpbTjAlXu0Qae-BXBNtx-D01p1qR-e7DIEJk
